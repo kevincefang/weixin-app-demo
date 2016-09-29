@@ -6,6 +6,12 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
   },
+  onShow:function(){
+      console.log("onShow...");
+  },
+  onHide:function(){
+      console.log("onHide...");
+  },
   getUserInfo:function(cb){
     var that = this
     if(this.globalData.userInfo){
@@ -23,6 +29,21 @@ App({
         }
       })
     }
+  },
+  fetchApi(){
+    wx.request({
+      url,
+      data:{},
+      header:{
+        'Content-Type':'application/json'
+      },
+      success(res){
+        callback(null,res.data)
+      },
+      fail(e){
+        callback(e)
+      }
+    })
   },
   globalData:{
     userInfo:null
